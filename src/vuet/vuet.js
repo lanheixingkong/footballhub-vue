@@ -3,10 +3,9 @@ import Vuet from 'vuet'
 import utils from 'utils'
 import http from 'http'
 
-
 Vue.use(Vuet)
 
-let listCache = {'new': {id: 0, data: []}, 'cate': {id: 0, cate: []}}
+// let listCache = {'new': {id: 0, data: []}, 'cate': {id: 0, cate: []}}
 
 export default new Vuet({
   pathJoin: '-',
@@ -48,7 +47,7 @@ export default new Vuet({
             loading: false, // 数据正在加载中
             done: false, // 数据是否已经全部加载完成
             page: 1, // 加载的页数
-            id: 50
+            id: 0
           }
         },
         async fetch ({ state, route, params, path }) {

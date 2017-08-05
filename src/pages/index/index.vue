@@ -70,7 +70,7 @@
       // a computed getter
       base64Link: function () {
         // `this` points to the vm instance
-        return this.list.data.map(function(item){
+        return this.list.data.map(function (item) {
           item.link = Base64.encode(item.link)
           return item
         })
