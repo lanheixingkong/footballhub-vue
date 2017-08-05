@@ -71,7 +71,7 @@ export default [
       },
       {
         path: '*', // 其他页面
-        redirect: '/signin'
+        redirect: '/'
       }
     ]
   }

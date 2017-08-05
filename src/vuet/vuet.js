@@ -3,6 +3,7 @@ import Vuet from 'vuet'
 import utils from 'utils'
 import http from 'http'
 
+
 Vue.use(Vuet)
 
 let listCache = {'new': {id: 0, data: []}, 'cate': {id: 0, cate: []}}
@@ -89,22 +90,7 @@ export default new Vuet({
           return {
             data: {
               id: null,
-              author_id: null,
-              tab: null,
-              content: null,
-              title: null,
-              last_reply_at: null,
-              good: false,
-              top: false,
-              reply_count: 0,
-              visit_count: 0,
-              create_at: null,
-              author: {
-                loginname: null,
-                avatar_url: null
-              },
-              replies: [],
-              is_collect: false
+              url: null
             },
             existence: true,
             loading: true,
@@ -123,7 +109,7 @@ export default new Vuet({
           const url = route.params.id
           console.log('url:' + url)
           return {
-            data: url,
+            data: {id: url},
             existence: false,
             loading: false
           }
