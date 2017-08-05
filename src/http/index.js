@@ -1,5 +1,5 @@
 // const API = 'https://cnodejs.org/api/v1'
-const API = 'http://192.168.0.101:8080'
+const API = 'http://192.168.1.110:8080'
 
 let accesstoken = () => (localStorage.getItem('vue_cnode_accesstoken') || '')
 

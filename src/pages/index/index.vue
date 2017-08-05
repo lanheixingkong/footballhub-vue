@@ -4,7 +4,7 @@
     <nav class="nav">
       <ul flex="box:mean">
 
-        <li v-for="item in tabs" :class="{ active: item.tab === ($route.query.tab || '') }">
+        <li v-for="item in tabs" :class="{ active: item.tab === ($route.query.tab || 'new') }">
           <router-link :to="{ name: 'index', query: { tab: item.tab } }">{{ item.title }}</router-link>
         </li>
       </ul>

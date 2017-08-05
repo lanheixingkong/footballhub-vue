@@ -112,16 +112,18 @@ export default new Vuet({
           }
         },
         async fetch ({ route }) {
-          const { data } = await http.get(`/topic/${route.params.id}`)
-          if (data) {
-            return {
-              data,
-              existence: true,
-              loading: false
-            }
-          }
+          // const { data } = await http.get(`/topic/${}`)
+          // if (data) {
+          //   return {
+          //     data,
+          //     existence: true,
+          //     loading: false
+          //   }
+          // }
+          const url = route.params.id
+          console.log('url:' + url)
           return {
-            data: [],
+            data: url,
             existence: false,
             loading: false
           }
