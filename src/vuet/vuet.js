@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuet from 'vuet'
 import utils from 'utils'
 import http from 'http'
+let Base64 = require('js-base64').Base64
 
 Vue.use(Vuet)
 
@@ -71,7 +72,10 @@ export default new Vuet({
             id: state.id
           }
           const res = await http.get('/article/' + tab, query)
-          const newData = res.data.data
+          const newData = res.data.data.map(function (item) {
+            item.link = Base64.encode(item.link)
+            return item
+          })
           const data = params.routeWatch ? newData : [...state.data, ...newData]
           const len = newData.length
           // console.log(newData[len-1].id)

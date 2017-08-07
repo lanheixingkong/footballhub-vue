@@ -11,7 +11,7 @@
     </nav>
     <v-content v-vuet-scroll="{ path: 'topic-list', name: 'content' }">
       <ul class="list">
-        <li v-for="(item,index) in base64Link" key="item.id">
+        <li v-for="(item,index) in list.data" key="item.id">
           <!-- <router-link :to="{ name: 'topic-detail', params: { id: item.id } }"> -->
             <div>
               <b-btn block v-b-toggle="'accordion'+index" variant="primary">{{ item.title }}
@@ -43,7 +43,7 @@
   import { mapModules, mapRules } from 'vuet'
   import Vue from 'vue'
   import BootstrapVue from 'bootstrap-vue'
-  let Base64 = require('js-base64').Base64
+  // let Base64 = require('js-base64').Base64
 
   Vue.use(BootstrapVue)
 
@@ -70,10 +70,11 @@
       // a computed getter
       base64Link: function () {
         // `this` points to the vm instance
-        return this.list.data.map(function (item) {
-          item.link = Base64.encode(item.link)
-          return item
-        })
+        // return this.list.data.map(function (item) {
+        //   item.link = Base64.encode(item.link)
+        //   return item
+        // })
+        return this.list.data
       }
     }
   }
