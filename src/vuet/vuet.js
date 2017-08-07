@@ -64,6 +64,7 @@ export default new Vuet({
           // params.routeWatch 没有参数，则是上拉加载触发的调用
           const { tab = '' } = route.query
           console.log('tab:' + tab)
+          state.loading = true
           const query = {
             tab,
             mdrender: false,
