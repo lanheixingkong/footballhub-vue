@@ -9,7 +9,32 @@
         </li>
       </ul>
     </nav>
-    <v-content v-vuet-scroll="{ path: 'topic-list', name: 'content' }">
+    <div v-if="$route.query.tab === 'cate'" class="league">
+      <b-dropdown id="ddown5" :text="cateTxt" class="m-md-2">
+      <b-dropdown-item-button v-on:click="changeCate('英超')">
+        <router-link :to="{ name: 'index', query: { tab: 'cate', league: 100 } }">英超</router-link>
+      </b-dropdown-item-button>
+      <b-dropdown-item-button v-on:click="changeCate('西甲')">
+        <router-link :to="{ name: 'index', query: { tab: 'cate', league: 200 } }">西甲</router-link>
+      </b-dropdown-item-button>
+      <b-dropdown-item-button v-on:click="changeCate('意甲')">
+        <router-link :to="{ name: 'index', query: { tab: 'cate', league: 300 } }">意甲</router-link>
+      </b-dropdown-item-button>
+      <b-dropdown-item-button v-on:click="changeCate('德甲')">
+        <router-link :to="{ name: 'index', query: { tab: 'cate', league: 400 } }">德甲</router-link>
+      </b-dropdown-item-button>
+      <b-dropdown-item-button v-on:click="changeCate('法甲')">
+        <router-link :to="{ name: 'index', query: { tab: 'cate', league: 500 } }">法甲</router-link>
+      </b-dropdown-item-button>
+      <b-dropdown-item-button v-on:click="changeCate('中超')">
+        <router-link :to="{ name: 'index', query: { tab: 'cate', league: 600 } }">中超</router-link>
+      </b-dropdown-item-button>
+      <b-dropdown-item-button v-on:click="changeCate('其他')">
+        <router-link :to="{ name: 'index', query: { tab: 'cate', league: 700 } }">其他</router-link>
+      </b-dropdown-item-button>
+      </b-dropdown>
+    </div>
+    <v-content :class="{ cateList: $route.query.tab === 'cate' }" v-vuet-scroll="{ path: 'topic-list', name: 'content' }">
       <ul class="list">
         <li v-for="(item,index) in list.data" key="item.id">
           <!-- <router-link :to="{ name: 'topic-detail', params: { id: item.id } }"> -->
@@ -63,7 +88,9 @@
             title: '联赛资讯',
             tab: 'cate'
           }
-        ]
+        ],
+        cateTxt: '英超',
+        cateVal: 100
       }
     },
     computed: {
@@ -75,6 +102,11 @@
         //   return item
         // })
         return this.list.data
+      }
+    },
+    methods: {
+      changeCate: function (txt) {
+        this.cateTxt = txt
       }
     }
   }
@@ -171,5 +203,21 @@
     p {
       color: #999;
     }
+  }
+  .cateList{
+    z-index: 0 !important;
+    top: 90px !important;
+  }
+  .league{
+    width:100%;
+    position:absolute;
+    top:50px;
+    z-index:100;
+  }
+  .dropdown-item.active, .dropdown-item:active{
+    background-color: #FFF;
+  }
+  .dropdown-item a {
+    color: #000000;
   }
 </style>

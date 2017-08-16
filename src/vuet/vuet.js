@@ -7,6 +7,7 @@ let Base64 = require('js-base64').Base64
 Vue.use(Vuet)
 
 // let listCache = {'new': {id: 0, data: []}, 'cate': {id: 0, cate: []}}
+let lastLeague = 100
 
 export default new Vuet({
   pathJoin: '-',
@@ -62,17 +63,38 @@ export default new Vuet({
           }
 
           // params.routeWatch 没有参数，则是上拉加载触发的调用
-          const { tab = '' } = route.query
+          const { tab = '', league = 100 } = route.query
           console.log('tab:' + tab)
+          console.log('league:' + league)
           state.loading = true
-          const query = {
-            tab,
-            mdrender: false,
-            limit: 20,
-            page: state.page,
-            id: state.id
+          let res
+          if (tab === 'cate') {
+            if (lastLeague !== league) {
+              state.id = 0
+              state.data = []
+              lastLeague = league
+            }
+            
+            const query = {
+              tab,
+              mdrender: false,
+              limit: 20,
+              page: state.page,
+              id: state.id,
+              league: league
+            }
+            res = await http.get('/article/' + tab, query)
+          } else {
+            const query = {
+              tab,
+              mdrender: false,
+              limit: 20,
+              page: state.page,
+              id: state.id
+            }
+            res = await http.get('/article/' + tab, query)
           }
-          const res = await http.get('/article/' + tab, query)
+
           const newData = res.data.data.map(function (item) {
             item.link = Base64.encode(item.link)
             return item
